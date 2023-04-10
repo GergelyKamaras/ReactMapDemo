@@ -1,18 +1,46 @@
-import { CoordinateMaxValue, CoordinateMinValue } from "../Config";
+import { CoordinateMaxValue, CoordinateMinValue, GeometryTypes, MaxElementsInArray } from "../Config";
 
 export default function generateGeoJSONData()
 {
+    let type = pickType();
+
     let data = {
         "type" : "Feature",
         "geometry" : {
-            "type" : "Point",
-            "coordinates" : generateCoordinates()
+            "type" : `${type}`
         }
-    };
+    }
+
+    switch (type){
+        case "Point":
+            data["geometry"]["coordinates"] = generateCoordinatePair();
+            break;
+        case "MultiPoint":
+            data["geometry"]["coordinates"] = generateCoordinateArray();
+            break;
+        default:
+            break;
+    }
     return JSON.stringify(data);
 }
 
-function generateCoordinates()
+function pickType()
+{
+    let randomIndex = Math.floor(Math.random() * GeometryTypes.length);
+    return GeometryTypes[randomIndex];
+}
+
+function generateCoordinateArray()
+{
+    let coordinates = [];
+    for (let i = 0; i < MaxElementsInArray; i++)
+    {
+        coordinates.push(generateCoordinatePair());
+    }
+    return coordinates;
+}
+
+function generateCoordinatePair()
 {
     return [generateCoordinate(), generateCoordinate()];
 }
