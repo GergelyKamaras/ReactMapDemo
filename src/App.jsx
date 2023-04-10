@@ -6,6 +6,7 @@ import GeoJSONInput from './Components/GeoJSONInput';
 
 function App() {
     const [coordinates, setCoordinates] = useState([51.505, -0.09]);
+    const [geoData, setGeoData] = useState("");
 
     return (
         <div className="App">

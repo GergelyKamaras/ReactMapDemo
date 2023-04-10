@@ -1,5 +1,15 @@
+import generateCoordinates from "../DataGeneration/datagenerator"
+
 export default function GeoJSONInput()
 {
+    function handleGeneration(e)
+    {
+        e.preventDefault();
+        let inputField = document.querySelector("#GeoData");
+        let coordinates = generateCoordinates();
+        inputField.innerHTML = `[${coordinates}]`;
+    }
+
     return (
         <>
             <form>
@@ -9,7 +19,7 @@ export default function GeoJSONInput()
                     <textarea id="GeoData"></textarea>
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-primary">Generate data</button>
+                    <button className="btn btn-primary" onClick={handleGeneration}>Generate data</button>
                     <button type="submit" className="btn btn-primary">Display on Map</button>
                 </div>
             </form>
