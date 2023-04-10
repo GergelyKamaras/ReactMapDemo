@@ -1,27 +1,43 @@
+import { useEffect } from "react";
 import generateGeoJSONData from "../DataGeneration/datagenerator";
 import validateGeoData from "../DataValidation/validateGeoData";
 
 export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData})
 {
-    function handleGeneration(e)
+    async function handleGeneration(e)
     {
         e.preventDefault();
         let inputField = document.querySelector("#GeoData");
         let data = generateGeoJSONData();
-        inputField.innerHTML = `${data}`;
         setGeoData(data);
+        inputField.value = `${data}`;
     }
 
-    function handleDisplay(e)
+    async function handleDisplay(e)
     {
         e.preventDefault();
-        if (geoData!= "" && validateGeoData(geoData))
+        let inputField = document.querySelector("#GeoData");
+        await setGeoData(inputField.value);
+
+        let isValid = false;
+        try
+        {
+            isValid = validateGeoData(geoData);
+        }
+        catch (error)
+        {
+            console.log(error);
+            alert("Input not in valid GeoJSON format!");
+            return null;
+        }
+
+        if (isValid)
         {
             setShouldDisplayData(true);
         }
         else
         {
-            alert("Invalid GeoJSON Data!")
+            alert("Invalid GeoJSON Data!");
         }
     }
 
