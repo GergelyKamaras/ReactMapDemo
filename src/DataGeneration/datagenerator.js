@@ -33,7 +33,9 @@ function pickType()
 function generateCoordinateArray()
 {
     let coordinates = [];
-    for (let i = 0; i < MaxElementsInArray; i++)
+    let arrayLength = Math.floor(Math.random() * MaxElementsInArray);
+
+    for (let i = 0; i < arrayLength; i++)
     {
         coordinates.push(generateCoordinatePair());
     }
