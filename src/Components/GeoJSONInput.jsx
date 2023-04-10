@@ -1,4 +1,4 @@
-import generateCoordinates from "../DataGeneration/datagenerator"
+import generateGeoJSONData from "../DataGeneration/datagenerator";
 
 export default function GeoJSONInput()
 {
@@ -6,8 +6,8 @@ export default function GeoJSONInput()
     {
         e.preventDefault();
         let inputField = document.querySelector("#GeoData");
-        let coordinates = generateCoordinates();
-        inputField.innerHTML = `[${coordinates}]`;
+        let data = generateGeoJSONData();
+        inputField.innerHTML = `${data}`;
     }
 
     return (
