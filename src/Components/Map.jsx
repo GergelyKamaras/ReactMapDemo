@@ -36,12 +36,18 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
                     layers.push(marker);
                     break;
 
-                    case "MultiPoint":
+                case "MultiPoint":
                     map.setView(coordinates[0]);
                     coordinates.forEach(c => {
                         let marker = L.marker(c).addTo(map);
                         layers.push(marker);
                     })
+                    break;
+
+                case "LineString":
+                    map.setView(coordinates[0]);
+                    let line = L.polyline(coordinates).addTo(map);
+                    layers.push(line);
                     break;
             }
         }
@@ -56,7 +62,7 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
     }, [shouldCenterView])
 
     return (
-        <MapContainer id="map" center={coordinates} zoom={13} scrollWheelZoom={false}>
+        <MapContainer id="map" center={coordinates} zoom={2} scrollWheelZoom={false}>
             <ChangeView coordinates={coordinates}/>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

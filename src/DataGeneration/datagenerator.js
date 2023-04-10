@@ -18,6 +18,9 @@ export default function generateGeoJSONData()
         case "MultiPoint":
             data["geometry"]["coordinates"] = generateCoordinateArray();
             break;
+        case "LineString":
+            data["geometry"]["coordinates"] = generateCoordinateArray();
+            break;
         default:
             break;
     }

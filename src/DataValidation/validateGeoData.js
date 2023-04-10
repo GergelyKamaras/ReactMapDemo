@@ -12,14 +12,15 @@ export default function validateGeoData(input)
 function validateFeature(feature)
 {
     let geometry = feature["geometry"];
+    let type = geometry["type"];
 
-    if (GeometryTypes.includes(geometry["type"]))
+    if (GeometryTypes.includes(type))
     {
-        if (geometry["type"] === "Point")
+        if (type === "Point")
         {
             return validatecoordinates(geometry["coordinates"]);
         }
-        if (geometry["type"] === "MultiPoint")
+        if (type === "MultiPoint" || type === "LineString")
         {
             geometry["coordinates"].forEach(element => {
                 if (!validatecoordinates(element))
