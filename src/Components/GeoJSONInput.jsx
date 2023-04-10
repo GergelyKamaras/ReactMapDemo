@@ -1,4 +1,5 @@
 import generateGeoJSONData from "../DataGeneration/datagenerator";
+import validateGeoData from "../DataValidation/validateGeoData";
 
 export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData})
 {
@@ -14,7 +15,14 @@ export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData}
     function handleDisplay(e)
     {
         e.preventDefault();
-        setShouldDisplayData(true);
+        if (validateGeoData(geoData))
+        {
+            setShouldDisplayData(true);
+        }
+        else
+        {
+            alert("Invalid GeoJSON Data!")
+        }
     }
 
     return (
