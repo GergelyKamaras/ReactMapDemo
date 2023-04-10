@@ -7,19 +7,24 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
     {
         if (shouldCenterView)
         {
-        const map = useMap();
-        map.setView(coordinates);
+            const map = useMap();
+            map.setView(coordinates);
             setShouldCenterView(false);
-        return null;
-    }
+            return null;
+        }
     }
 
-    useEffect(() => {
-        if (displayData)
+    function DisplayJSON()
+    {
+        if (shouldDisplayData)
         {
-            console.log(geoData)
-            setDisplayData(false);
+            const map = useMap();
+            let data = JSON.parse(geoData);
+            let coordinates = data["geometry"]["coordinates"];
+            map.setView(coordinates);
+            L.marker(coordinates).addTo(map);
         }
+    }
 
     useEffect(() => {
         setShouldDisplayData(false);
@@ -32,6 +37,7 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <DisplayJSON />
         </MapContainer>
     )
 }
