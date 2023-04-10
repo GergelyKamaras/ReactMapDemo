@@ -1,4 +1,4 @@
-export default function Input({coordinates, setCoordinates})
+export default function Navigate({coordinates, setCoordinates})
 {
     function updateMap(e)
     {
@@ -10,11 +10,12 @@ export default function Input({coordinates, setCoordinates})
 
     return(
         <form>
+            <h3>Navigate to coordinates</h3>
             <label htmlFor="coordinate1" >Coordinate 1</label>
             <input id="coordinate1" type="number" defaultValue={coordinates[0]}></input>
             <label htmlFor="coordinate1">Coordinate 1</label>
             <input id="coordinate2" type="number" defaultValue={coordinates[1]}></input>
-            <button type="submit" onClick={updateMap}>Show!</button>
+            <button type="submit" onClick={updateMap}>Go to Coordinates!</button>
         </form>
     )
 }
