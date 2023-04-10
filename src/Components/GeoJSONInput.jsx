@@ -1,6 +1,6 @@
 import generateGeoJSONData from "../DataGeneration/datagenerator";
 
-export default function GeoJSONInput()
+export default function GeoJSONInput({geoData, setGeoData, setDisplayData})
 {
     function handleGeneration(e)
     {
@@ -8,6 +8,13 @@ export default function GeoJSONInput()
         let inputField = document.querySelector("#GeoData");
         let data = generateGeoJSONData();
         inputField.innerHTML = `${data}`;
+        setGeoData(data);
+    }
+
+    function handleDisplay(e)
+    {
+        e.preventDefault();
+        setDisplayData(true);
     }
 
     return (
@@ -20,7 +27,7 @@ export default function GeoJSONInput()
                 </div>
                 <div className="form-group">
                     <button className="btn btn-primary" onClick={handleGeneration}>Generate data</button>
-                    <button type="submit" className="btn btn-primary">Display on Map</button>
+                    <button type="submit" className="btn btn-primary" onClick={handleDisplay}>Display on Map</button>
                 </div>
             </form>
         </>

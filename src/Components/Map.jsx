@@ -1,6 +1,7 @@
+import { useEffect } from 'react';
 import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 
-export default function Map({coordinates})
+export default function Map({coordinates, geoData, displayData, setDisplayData})
 {
     function ChangeView({coordinates})
     {
@@ -8,6 +9,15 @@ export default function Map({coordinates})
         map.setView(coordinates);
         return null;
     }
+
+    useEffect(() => {
+        if (displayData)
+        {
+            console.log(geoData)
+            setDisplayData(false);
+        }
+
+    }, [displayData]);
 
     return (
         <MapContainer id="map" center={coordinates} zoom={13} scrollWheelZoom={false}>
