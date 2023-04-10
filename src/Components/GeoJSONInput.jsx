@@ -15,7 +15,7 @@ export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData}
     function handleDisplay(e)
     {
         e.preventDefault();
-        if (validateGeoData(geoData))
+        if (geoData!= "" && validateGeoData(geoData))
         {
             setShouldDisplayData(true);
         }
