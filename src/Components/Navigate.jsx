@@ -11,11 +11,19 @@ export default function Navigate({coordinates, setCoordinates})
     return(
         <form>
             <h3>Navigate to coordinates</h3>
-            <label htmlFor="coordinate1" >Coordinate 1</label>
-            <input id="coordinate1" type="number" defaultValue={coordinates[0]}></input>
-            <label htmlFor="coordinate1">Coordinate 1</label>
-            <input id="coordinate2" type="number" defaultValue={coordinates[1]}></input>
-            <button type="submit" onClick={updateMap}>Go to Coordinates!</button>
+            <div className="form-group">
+                <label htmlFor="coordinate1" >Latitude</label>
+                <br></br>
+                <input id="coordinate1" type="number" defaultValue={coordinates[0]}></input>
+            </div>
+            <div className="form-group">
+                <label htmlFor="coordinate1">Longitude</label>
+                <br></br>
+                <input id="coordinate2" type="number" defaultValue={coordinates[1]}></input>
+            </div>
+            <div className="form-group">
+                <button type="submit" onClick={updateMap} className="btn btn-primary">Go to Coordinates!</button>
+            </div>
         </form>
     )
 }
