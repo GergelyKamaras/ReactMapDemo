@@ -9,7 +9,7 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
         {
             const map = useMap();
             map.setView(coordinates);
-            setShouldCenterView(false);
+            //setShouldCenterView(false);
             return null;
         }
     }
@@ -29,6 +29,10 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
     useEffect(() => {
         setShouldDisplayData(false);
     }, [shouldDisplayData])
+
+    useEffect(() => {
+        setShouldCenterView(false);
+    }, [shouldCenterView])
 
     return (
         <MapContainer id="map" center={coordinates} zoom={13} scrollWheelZoom={false}>

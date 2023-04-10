@@ -8,7 +8,7 @@ function App() {
     const [coordinates, setCoordinates] = useState([51.505, -0.09]);
     const [geoData, setGeoData] = useState("");
     const [shouldDisplayData, setShouldDisplayData] = useState(false);
-    const [shouldCenterView, setShouldCenterView] = useState(true);
+    const [shouldCenterView, setShouldCenterView] = useState(false);
 
     return (
         <div className="App">
