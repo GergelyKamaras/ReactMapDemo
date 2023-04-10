@@ -33,7 +33,11 @@ function pickType()
 function generateCoordinateArray()
 {
     let coordinates = [];
-    let arrayLength = Math.floor(Math.random() * MaxElementsInArray);
+    // Pick random array length
+    let randomNum = Math.floor(Math.random() * MaxElementsInArray);
+
+    // Make sure it's at least 2
+    let arrayLength = Math.max(2, randomNum);
 
     for (let i = 0; i < arrayLength; i++)
     {
