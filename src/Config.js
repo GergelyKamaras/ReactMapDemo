@@ -3,4 +3,4 @@ export const CoordinateMaxValue = 90;
 
 export const MaxElementsInArray = 10;
 
-export const GeometryTypes = ["Point", "MultiPoint", "LineString"]
+export const GeometryTypes = ["Point", "MultiPoint", "LineString", "MultiLineString"]

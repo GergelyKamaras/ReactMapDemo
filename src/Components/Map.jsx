@@ -49,6 +49,14 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
                     let line = L.polyline(coordinates).addTo(map);
                     layers.push(line);
                     break;
+
+                case "MultiLineString":
+                    map.setView(coordinates[0][0]);
+                    coordinates.forEach((coordinateGroup) => {
+                        let line = L.polyline(coordinates).addTo(map);
+                        layers.push(line);
+                    });
+                    break;
             }
         }
     }

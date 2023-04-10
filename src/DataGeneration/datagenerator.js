@@ -21,6 +21,9 @@ export default function generateGeoJSONData()
         case "LineString":
             data["geometry"]["coordinates"] = generateCoordinateArray();
             break;
+        case "MultiLineString":
+            data["geometry"]["coordinates"] = generateArrayOfCoordinateArrays();
+            break;
         default:
             break;
     }
@@ -29,24 +32,40 @@ export default function generateGeoJSONData()
 
 function pickType()
 {
-    let randomIndex = Math.floor(Math.random() * GeometryTypes.length);
+    let randomIndex = generateRandomNum(0, GeometryTypes.length - 1);
     return GeometryTypes[randomIndex];
+}
+
+function generateArrayOfCoordinateArrays()
+{
+    let numberOfArrays = generateRandomNum(2, MaxElementsInArray);
+    let coordinates = [];
+
+    for (let i = 0; i < numberOfArrays; i++)
+    {
+        coordinates.push(generateCoordinateArray());
+    }
+
+    return coordinates;
 }
 
 function generateCoordinateArray()
 {
     let coordinates = [];
-    // Pick random array length
-    let randomNum = Math.floor(Math.random() * MaxElementsInArray);
 
-    // Make sure it's at least 2
-    let arrayLength = Math.max(2, randomNum);
+    let arrayLength = generateRandomNum(2, MaxElementsInArray)
 
     for (let i = 0; i < arrayLength; i++)
     {
         coordinates.push(generateCoordinatePair());
     }
     return coordinates;
+}
+
+function generateRandomNum(min, max)
+{
+    let randomNum = Math.floor(Math.random() * (max + 1));
+    return Math.max(min, randomNum);
 }
 
 function generateCoordinatePair()

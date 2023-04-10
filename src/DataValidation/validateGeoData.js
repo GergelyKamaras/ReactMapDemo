@@ -22,16 +22,31 @@ function validateFeature(feature)
         }
         if (type === "MultiPoint" || type === "LineString")
         {
-            geometry["coordinates"].forEach(element => {
-                if (!validatecoordinates(element))
+            return validateCoordinateArray(geometry["coordinates"]);
+        }
+        if (type === "MultiLineString")
+        {
+            geometry["coordinates"].forEach((e) => {
+                if (!validateCoordinateArray(e))
                 {
                     return false;
                 }
             });
-            return true
+            return true;
         }
     }
     return false;
+}
+
+function validateCoordinateArray(coordinateArray)
+{
+    coordinateArray.forEach(element => {
+        if (!validatecoordinates(element))
+        {
+            return false;
+        }
+    });
+    return true;
 }
 
 function validatecoordinates(coordinates)
