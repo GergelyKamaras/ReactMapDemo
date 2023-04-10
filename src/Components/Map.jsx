@@ -21,12 +21,29 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
 
         if (shouldDisplayData)
         {
+            // Remove old markers
             layers.forEach(l => map.removeLayer(l));
+
             let data = JSON.parse(geoData);
+            let type = data["geometry"]["type"];
             let coordinates = data["geometry"]["coordinates"];
-            map.setView(coordinates);
-            let marker = L.marker(coordinates).addTo(map);
-            layers.push(marker);
+
+            switch (type)
+            {
+                case "Point":
+                    map.setView(coordinates);
+                    let marker = L.marker(coordinates).addTo(map);
+                    layers.push(marker);
+                    break;
+
+                    case "MultiPoint":
+                    map.setView(coordinates[0]);
+                    coordinates.forEach(c => {
+                        let marker = L.marker(c).addTo(map);
+                        layers.push(marker);
+                    })
+                    break;
+            }
         }
     }
 

@@ -19,6 +19,16 @@ function validateFeature(feature)
         {
             return validatecoordinates(geometry["coordinates"]);
         }
+        if (geometry["type"] === "MultiPoint")
+        {
+            geometry["coordinates"].forEach(element => {
+                if (!validatecoordinates(element))
+                {
+                    return false;
+                }
+            });
+            return true
+        }
     }
     return false;
 }
