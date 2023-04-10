@@ -9,8 +9,8 @@ export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData}
         e.preventDefault();
         let inputField = document.querySelector("#GeoData");
         let data = generateGeoJSONData();
-        setGeoData(data);
         inputField.value = `${data}`;
+        setGeoData(data);
     }
 
     async function handleDisplay(e)
