@@ -7,18 +7,15 @@ import GeoJSONInput from './Components/GeoJSONInput';
 function App() {
     const [coordinates, setCoordinates] = useState([51.505, -0.09]);
     const [geoData, setGeoData] = useState("");
-    const [displayData, setDisplayData] = useState(false);
-
-    useEffect(() => {
-
-    }, [])
+    const [shouldDisplayData, setShouldDisplayData] = useState(false);
+    const [shouldCenterView, setShouldCenterView] = useState(true);
 
     return (
         <div className="App">
             <h1>Map demo application</h1>
-            <GeoJSONInput geoData={geoData} setGeoData={setGeoData} setDisplayData={setDisplayData}/>
-            <Navigate coordinates={coordinates} setCoordinates={setCoordinates} />
-            <Map coordinates={coordinates} geoData={geoData} displayData={displayData} setDisplayData={setDisplayData} />
+            <GeoJSONInput geoData={geoData} setGeoData={setGeoData} setShouldDisplayData={setShouldDisplayData}/>
+            <Navigate coordinates={coordinates} setCoordinates={setCoordinates} setShouldCenterView={setShouldCenterView}/>
+            <Map coordinates={coordinates} geoData={geoData} shouldDisplayData={shouldDisplayData} setShouldDisplayData={setShouldDisplayData} shouldCenterView={shouldCenterView} setShouldCenterView={setShouldCenterView}/>
         </div>
     )
 }

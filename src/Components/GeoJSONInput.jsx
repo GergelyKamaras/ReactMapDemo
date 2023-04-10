@@ -1,6 +1,6 @@
 import generateGeoJSONData from "../DataGeneration/datagenerator";
 
-export default function GeoJSONInput({geoData, setGeoData, setDisplayData})
+export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData})
 {
     function handleGeneration(e)
     {
@@ -14,7 +14,7 @@ export default function GeoJSONInput({geoData, setGeoData, setDisplayData})
     function handleDisplay(e)
     {
         e.preventDefault();
-        setDisplayData(true);
+        setShouldDisplayData(true);
     }
 
     return (

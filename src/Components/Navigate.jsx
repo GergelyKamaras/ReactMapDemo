@@ -1,4 +1,4 @@
-export default function Navigate({coordinates, setCoordinates})
+export default function Navigate({coordinates, setCoordinates, setShouldCenterView})
 {
     function updateMap(e)
     {
@@ -6,6 +6,7 @@ export default function Navigate({coordinates, setCoordinates})
         let coordinate1 = parseFloat(document.querySelector("#coordinate1").value);
         let coordinate2 = parseFloat(document.querySelector("#coordinate2").value);
         setCoordinates([coordinate1, coordinate2]);
+        setShouldCenterView(true);
     }
 
     return(
