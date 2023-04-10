@@ -18,7 +18,7 @@ export default function Navigate({coordinates, setCoordinates, setShouldCenterVi
                 <input id="coordinate1" type="number" defaultValue={coordinates[0]}></input>
             </div>
             <div className="form-group">
-                <label htmlFor="coordinate1">Longitude</label>
+                <label htmlFor="coordinate2">Longitude</label>
                 <br></br>
                 <input id="coordinate2" type="number" defaultValue={coordinates[1]}></input>
             </div>

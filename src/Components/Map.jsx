@@ -28,34 +28,27 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
             let type = data["geometry"]["type"];
             let coordinates = data["geometry"]["coordinates"];
 
+            console.log(coordinates);
+
+            let feature = L.geoJSON(data).addTo(map);
+            layers.push(feature);
+
             switch (type)
             {
                 case "Point":
-                    map.setView(coordinates);
-                    let marker = L.marker(coordinates).addTo(map);
-                    layers.push(marker);
+                    map.setView([coordinates[1], coordinates[0]]);
                     break;
 
                 case "MultiPoint":
-                    map.setView(coordinates[0]);
-                    coordinates.forEach(c => {
-                        let marker = L.marker(c).addTo(map);
-                        layers.push(marker);
-                    })
+                    map.setView([coordinates[0][1], coordinates[0][0]]);
                     break;
 
                 case "LineString":
-                    map.setView(coordinates[0]);
-                    let line = L.polyline(coordinates).addTo(map);
-                    layers.push(line);
+                    map.setView([coordinates[0][1], coordinates[0][0]]);
                     break;
 
                 case "MultiLineString":
-                    map.setView(coordinates[0][0]);
-                    coordinates.forEach((coordinateGroup) => {
-                        let line = L.polyline(coordinates).addTo(map);
-                        layers.push(line);
-                    });
+                    map.setView([coordinates[0][0][1], coordinates[0][0][0]]);
                     break;
             }
         }
@@ -70,7 +63,7 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
     }, [shouldCenterView])
 
     return (
-        <MapContainer id="map" center={coordinates} zoom={2} scrollWheelZoom={false}>
+        <MapContainer id="map" center={coordinates} zoom={10} scrollWheelZoom={false}>
             <ChangeView coordinates={coordinates}/>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
