@@ -3,26 +3,30 @@ import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 
 export default function Map({coordinates, geoData, shouldDisplayData, setShouldDisplayData, shouldCenterView, setShouldCenterView})
 {
+    const [layers, setLayers] = useState([]);
+
     function ChangeView({coordinates})
     {
         if (shouldCenterView)
         {
             const map = useMap();
             map.setView(coordinates);
-            //setShouldCenterView(false);
             return null;
         }
     }
 
     function DisplayJSON()
     {
+        const map = useMap();
+
         if (shouldDisplayData)
         {
-            const map = useMap();
+            layers.forEach(l => map.removeLayer(l));
             let data = JSON.parse(geoData);
             let coordinates = data["geometry"]["coordinates"];
             map.setView(coordinates);
-            L.marker(coordinates).addTo(map);
+            let marker = L.marker(coordinates).addTo(map);
+            layers.push(marker);
         }
     }
 
