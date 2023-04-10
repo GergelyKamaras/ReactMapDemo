@@ -28,8 +28,6 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
             let type = data["geometry"]["type"];
             let coordinates = data["geometry"]["coordinates"];
 
-            console.log(coordinates);
-
             let feature = L.geoJSON(data).addTo(map);
             layers.push(feature);
 
@@ -45,6 +43,10 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
 
                 case "LineString":
                     map.setView([coordinates[0][1], coordinates[0][0]]);
+                    break;
+
+                case "Polygon":
+                    map.setView([coordinates[0][0][1], coordinates[0][0][0]]);
                     break;
 
                 case "MultiLineString":
@@ -63,7 +65,7 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
     }, [shouldCenterView])
 
     return (
-        <MapContainer id="map" center={coordinates} zoom={10} scrollWheelZoom={false}>
+        <MapContainer id="map" center={coordinates} zoom={5} scrollWheelZoom={false}>
             <ChangeView coordinates={coordinates}/>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

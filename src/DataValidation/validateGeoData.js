@@ -34,6 +34,16 @@ function validateFeature(feature)
             });
             return true;
         }
+        if (type === "Polygon")
+        {
+            geometry["coordinates"].forEach((e) => {
+                if (!validateCoordinateArray(e))
+                {
+                    return false;
+                }
+            });
+            return true;
+        }
     }
     return false;
 }

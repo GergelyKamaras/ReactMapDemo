@@ -24,10 +24,28 @@ export default function generateGeoJSONData()
         case "MultiLineString":
             data["geometry"]["coordinates"] = generateArrayOfCoordinateArrays();
             break;
+        case "Polygon":
+            data["geometry"]["coordinates"] = generatePolygonCoordinates();
+            break;
         default:
             break;
     }
     return JSON.stringify(data);
+}
+
+function generatePolygonCoordinates()
+{
+    let coordinates = [];
+
+    let arrayLength = generateRandomNum(3, MaxElementsInArray)
+
+    for (let i = 0; i < arrayLength; i++)
+    {
+        coordinates.push(generateCoordinatePair());
+    }
+
+    coordinates.push(coordinates[0]);
+    return [coordinates];
 }
 
 function pickType()
