@@ -14,8 +14,8 @@ function App() {
         <div className="App">
             <h1>Map demo application</h1>
             <GeoJSONInput geoData={geoData} setGeoData={setGeoData} setShouldDisplayData={setShouldDisplayData}/>
-            <Navigate coordinates={coordinates} setCoordinates={setCoordinates} setShouldCenterView={setShouldCenterView}/>
             <Map coordinates={coordinates} geoData={geoData} shouldDisplayData={shouldDisplayData} setShouldDisplayData={setShouldDisplayData} shouldCenterView={shouldCenterView} setShouldCenterView={setShouldCenterView}/>
+            <Navigate coordinates={coordinates} setCoordinates={setCoordinates} setShouldCenterView={setShouldCenterView}/>
         </div>
     )
 }
