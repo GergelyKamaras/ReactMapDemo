@@ -24,28 +24,23 @@ function validateFeature(feature)
         {
             return validateCoordinateArray(geometry["coordinates"]);
         }
-        if (type === "MultiLineString")
+        if (type === "MultiLineString" || type === "Polygon")
         {
-            geometry["coordinates"].forEach((e) => {
-                if (!validateCoordinateArray(e))
-                {
-                    return false;
-                }
-            });
-            return true;
-        }
-        if (type === "Polygon")
-        {
-            geometry["coordinates"].forEach((e) => {
-                if (!validateCoordinateArray(e))
-                {
-                    return false;
-                }
-            });
-            return true;
+            return validateArrayOfCoordinateArrays(geometry["coordinates"]);
         }
     }
     return false;
+}
+
+function validateArrayOfCoordinateArrays(arrayOfCoordinateArrays)
+{
+    arrayOfCoordinateArrays.forEach((coordinateArray) => {
+        if (!validateCoordinateArray(coordinateArray))
+        {
+            return false;
+        }
+    });
+    return true;
 }
 
 function validateCoordinateArray(coordinateArray)
