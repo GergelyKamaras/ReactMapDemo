@@ -24,15 +24,26 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
             // Remove old markers
             layers.forEach(l => map.removeLayer(l));
 
-            let feature = JSON.parse(geoData);
 
-            displayFeature(map, feature);
+            let data = JSON.parse(geoData);
+
+            if (data["type"] === "Feature")
+            {
+                displayFeature(map, data);
+            }
+            if (data["type"] === "FeatureCollection")
+            {
+                data["features"].forEach((feature) => {
+                    displayFeature(map, feature);
+                })
+            }
+
         }
     }
 
     function displayFeature(map, feature)
     {
-        let type = feature["geometry"]["type"];
+            let type = feature["geometry"]["type"];
             let coordinates = feature["geometry"]["coordinates"];
 
             let layer = L.geoJSON(feature).addTo(map);

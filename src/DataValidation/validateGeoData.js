@@ -7,6 +7,21 @@ export default function validateGeoData(input)
     {
         return validateFeature(data);
     }
+    if (data["type"] === "FeatureCollection")
+    {
+        return validateFeatures(data["features"]);
+    }
+}
+
+function validateFeatures(features)
+{
+    features.forEach((feature) => {
+        if (!validateFeature(feature))
+        {
+            return false;
+        }
+    })
+    return true;
 }
 
 function validateFeature(feature)
