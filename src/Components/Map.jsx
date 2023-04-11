@@ -24,12 +24,19 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
             // Remove old markers
             layers.forEach(l => map.removeLayer(l));
 
-            let data = JSON.parse(geoData);
-            let type = data["geometry"]["type"];
-            let coordinates = data["geometry"]["coordinates"];
+            let feature = JSON.parse(geoData);
 
-            let feature = L.geoJSON(data).addTo(map);
-            layers.push(feature);
+            displayFeature(map, feature);
+        }
+    }
+
+    function displayFeature(map, feature)
+    {
+        let type = feature["geometry"]["type"];
+            let coordinates = feature["geometry"]["coordinates"];
+
+            let layer = L.geoJSON(feature).addTo(map);
+            layers.push(layer);
 
             switch (type)
             {
@@ -57,7 +64,6 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
                     map.setView([coordinates[0][0][0][1], coordinates[0][0][0][0]]);
                     break;
             }
-        }
     }
 
     useEffect(() => {
