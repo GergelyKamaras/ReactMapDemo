@@ -1,4 +1,4 @@
-import { CoordinateMinValue, CoordinateMaxValue, GeometryTypes } from "../Config";
+import { LatitudeMinValue, LatitudeMaxValue, GeometryTypes, LongitudeMinValue, LongitudeMaxValue } from "../Config";
 
 export default function validateGeoData(input)
 {
@@ -61,10 +61,10 @@ function validateCoordinateArray(coordinateArray)
 
 function validatecoordinates(coordinates)
 {
-    if (CoordinateMinValue <= coordinates[0] &&
-        coordinates[0] <= CoordinateMaxValue &&
-        CoordinateMinValue <= coordinates[1] &&
-        coordinates[1] <= CoordinateMaxValue)
+    if (LongitudeMinValue <= coordinates[0] &&
+        coordinates[0] <= LongitudeMaxValue &&
+        LatitudeMinValue <= coordinates[1] &&
+        coordinates[1] <= LatitudeMaxValue)
     {
         return true;
     }
