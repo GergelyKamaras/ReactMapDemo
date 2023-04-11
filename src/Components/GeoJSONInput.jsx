@@ -23,7 +23,7 @@ export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData}
         let isValid = false;
         try
         {
-            isValid = validateGeoData(geoData);
+            isValid = validateGeoData(inputField.value);
         }
         catch (error)
         {
