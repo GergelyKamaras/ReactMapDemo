@@ -1,4 +1,4 @@
-import { LatitudeMaxValue, LatitudeMinValue, GeometryTypes, MaxElementsInArray } from "../Config";
+import { LatitudeMaxValue, LatitudeMinValue, GeometryTypes, MaxElementsInArray, LongitudeMaxValue, LongitudeMinValue } from "../Config";
 
 export default function generateGeoJSONData()
 {
@@ -88,11 +88,17 @@ function generateRandomNum(min, max)
 
 function generateCoordinatePair()
 {
-    return [generateCoordinate(), generateCoordinate()];
+    return [generateLongitude(), generateLatitude()];
 }
 
-function generateCoordinate()
+function generateLongitude()
 {
-    let coordinate = (Math.random() * (LatitudeMaxValue - LatitudeMinValue) + LatitudeMinValue);
-    return coordinate;
+    let longitude = (Math.random() * (LongitudeMaxValue - LongitudeMinValue) + LongitudeMinValue);
+    return longitude;
+}
+
+function generateLatitude()
+{
+    let latitude = (Math.random() * (LatitudeMaxValue - LatitudeMinValue) + LatitudeMinValue);
+    return latitude;
 }
