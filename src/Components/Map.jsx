@@ -45,7 +45,11 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
             let type = feature["geometry"]["type"];
             let coordinates = feature["geometry"]["coordinates"];
 
-            let layer = L.geoJSON(feature).addTo(map);
+            // Display properties, via https://gis.stackexchange.com/questions/229723/displaying-properties-of-geojson-in-popup-on-leaflet
+            let layer = L.geoJSON(feature, {
+                onEachFeature: onEachFeature
+            }).addTo(map);
+
             layers.push(layer);
 
             switch (type)
@@ -74,6 +78,12 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
                     map.setView([coordinates[0][0][0][1], coordinates[0][0][0][0]]);
                     break;
             }
+    }
+
+    function onEachFeature(feature, layer) {
+        if (feature["properties"]) {
+            layer.bindPopup(`${JSON.stringify(feature["properties"])}`);
+        }
     }
 
     useEffect(() => {
