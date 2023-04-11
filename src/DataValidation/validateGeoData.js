@@ -28,8 +28,24 @@ function validateFeature(feature)
         {
             return validateArrayOfCoordinateArrays(geometry["coordinates"]);
         }
+        if (type === "MultiPolygon")
+        {
+            return validateMultiPolygonCoordinates(geometry["coordinates"]);
+        }
     }
     return false;
+}
+
+function validateMultiPolygonCoordinates(multiPolygonCoordinates)
+{
+    multiPolygonCoordinates.forEach((polygonCoordinates) =>
+    {
+        if (!validateArrayOfCoordinateArrays(polygonCoordinates))
+        {
+            return false;
+        }
+    })
+    return true;
 }
 
 function validateArrayOfCoordinateArrays(arrayOfCoordinateArrays)

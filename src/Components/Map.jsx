@@ -52,6 +52,10 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
                 case "MultiLineString":
                     map.setView([coordinates[0][0][1], coordinates[0][0][0]]);
                     break;
+
+                case "MultiPolygon":
+                    map.setView([coordinates[0][0][0][1], coordinates[0][0][0][0]]);
+                    break;
             }
         }
     }

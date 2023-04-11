@@ -6,4 +6,4 @@ export const LongitudeMaxValue = 180;
 
 export const MaxElementsInArray = 10;
 
-export const GeometryTypes = ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon"]
+export const GeometryTypes = ["Point", "MultiPoint", "LineString", "MultiLineString", "Polygon", "MultiPolygon"]

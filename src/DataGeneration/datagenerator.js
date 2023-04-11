@@ -27,10 +27,26 @@ export default function generateGeoJSONData()
         case "Polygon":
             data["geometry"]["coordinates"] = generatePolygonCoordinates();
             break;
+        case "MultiPolygon":
+            data["geometry"]["coordinates"] = generateMultiPolygonCoordinates();
+            break;
         default:
             break;
     }
     return JSON.stringify(data);
+}
+
+function generateMultiPolygonCoordinates()
+{
+    let coordinates = [];
+    let numberOfPolygons = generateRandomNum(2, MaxElementsInArray);
+
+    for (let i = 0; i < numberOfPolygons; i++)
+    {
+        coordinates.push(generatePolygonCoordinates());
+    }
+
+    return coordinates;
 }
 
 function generatePolygonCoordinates()
