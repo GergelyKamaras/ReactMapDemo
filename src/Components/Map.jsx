@@ -24,7 +24,6 @@ export default function Map({coordinates, geoData, shouldDisplayData, setShouldD
             // Remove old markers
             layers.forEach(l => map.removeLayer(l));
 
-
             let data = JSON.parse(geoData);
 
             if (data["type"] === "Feature")

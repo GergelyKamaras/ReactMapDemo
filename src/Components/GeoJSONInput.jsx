@@ -17,7 +17,6 @@ export default function GeoJSONInput({geoData, setGeoData, setShouldDisplayData}
     {
         e.preventDefault();
         let inputField = document.querySelector("#GeoData");
-        console.log(document.querySelector("#GeoData").value);
         await setGeoData(inputField.value);
 
         let isValid = false;
